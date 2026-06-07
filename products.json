@@ -1,0 +1,56 @@
+{
+  "catalog": {
+    "sin12": {
+      "name": "Charola 12 Sin Cobertura",
+      "price": 870,
+      "emoji": "🍩"
+    },
+    "sin15": {
+      "name": "Charola 15 Sin Cobertura",
+      "price": 1000,
+      "emoji": "🍩"
+    },
+    "sal-dl": {
+      "name": "Salsera Dulce de Leche",
+      "price": 100,
+      "emoji": "🍮"
+    },
+    "sal-lc": {
+      "name": "Salsera Leche Condensada",
+      "price": 90,
+      "emoji": "🥛"
+    },
+    "sal-nt": {
+      "name": "Salsera Nutella",
+      "price": 150,
+      "emoji": "🌰"
+    },
+    "caja": {
+      "name": "Caja Trocitos Premium",
+      "price": 1800,
+      "emoji": "🎁"
+    }
+  },
+  "coberturas": {
+    "lc": {
+      "name": "Leche Condensada",
+      "price": 3
+    },
+    "dl": {
+      "name": "Dulce de Leche",
+      "price": 7
+    },
+    "ch": {
+      "name": "Chocolate",
+      "price": 10
+    },
+    "cb": {
+      "name": "Choco Blanco",
+      "price": 18
+    },
+    "nt": {
+      "name": "Nutella",
+      "price": 25
+    }
+  }
+}

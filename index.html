@@ -983,9 +983,19 @@ main{
         <span class="confirm-phone" id="confirm-phone"></span>
         cuando esté listo. ¡Gracias! 🍩💕
       </div>
-      <button class="glass-btn primary" style="padding:14px 36px;font-size:15px" onclick="closeConfirm()">
-        ¡Genial! 😊
-      </button>
+      <div style="display:flex;flex-direction:column;gap:10px;width:100%;margin-top:4px">
+        <a id="wa-order-btn" href="#" target="_blank"
+          onclick="document.getElementById('wa-order-btn').href=window._lastWaURL"
+          class="glass-btn primary"
+          style="padding:14px;font-size:15px;text-decoration:none;text-align:center;border-radius:100px;
+                 background:linear-gradient(135deg,#128C7E,#25D366);border-color:rgba(255,255,255,.3);
+                 box-shadow:0 6px 20px rgba(18,140,126,.4);">
+          💬 Enviar también por WhatsApp
+        </a>
+        <button class="glass-btn" style="padding:13px;font-size:14px;width:100%" onclick="closeConfirm()">
+          Listo, gracias 😊
+        </button>
+      </div>
     </div>
   </div>
 </div>
@@ -1268,11 +1278,24 @@ function submitOrder() {
   const now = new Date().toLocaleString('es-CU');
 
   // Build WhatsApp message
-  const items = entries.map(([,v]) =>
-    `• ${v.emoji} ${v.name} ×${v.qty} = ${v.qty * v.price}$`
-  ).join('\n');
+  const items = entries.map(([,v]) => {
+    let line = `• ${v.emoji} ${v.name} ×${v.qty} = ${v.qty * v.price}$`;
+    if (v.detail) line += `\n   📝 Mix: ${v.detail}`;
+    return line;
+  }).join('\n');
 
-  const msg = `🍩 *NUEVO PEDIDO — Trocitos*\n\n👤 *Nombre:* ${name}\n📱 *Teléfono:* ${phone}\n\n🛒 *Pedido:*\n${items}\n\n💰 *TOTAL: ${total}$*\n🕐 ${now}`;
+  const orderNum = Math.floor(Math.random()*9000)+1000;
+  const msg = `🍩✨ *NUEVO PEDIDO #${orderNum}*\n`
+    + `━━━━━━━━━━━━━━━━━━━━━━\n`
+    + `👤 *Cliente:* ${name}\n`
+    + `📱 *Teléfono:* ${phone}\n`
+    + `━━━━━━━━━━━━━━━━━━━━━━\n`
+    + `🛒 *Productos:*\n${items}\n`
+    + `━━━━━━━━━━━━━━━━━━━━━━\n`
+    + `💰 *TOTAL: ${total}$*\n`
+    + `🕐 *Hora:* ${now}\n`
+    + `━━━━━━━━━━━━━━━━━━━━━━\n`
+    + `_Responde a este mensaje para contactar al cliente_ 💬`;
 
   // Save order locally for admin panel
   const order = { name, phone, items: entries.map(([,v])=>({...v})), total, time: now };
@@ -1287,6 +1310,22 @@ function submitOrder() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ chat_id: TG_CHAT_ID, text: msg, parse_mode: 'Markdown' })
   }).catch(() => {}); // silently ignore errors — order is already saved
+
+  // WhatsApp message
+  const waMSG = `🍩✨ NUEVO PEDIDO #${orderNum}\n`
+    + `━━━━━━━━━━━━━━━━━━━━━━\n`
+    + `👤 Cliente: ${name}\n`
+    + `📱 Teléfono: ${phone}\n`
+    + `━━━━━━━━━━━━━━━━━━━━━━\n`
+    + `🛒 Productos:\n${items.replace(/\*/g,'')}\n`
+    + `━━━━━━━━━━━━━━━━━━━━━━\n`
+    + `💰 TOTAL: ${total}$\n`
+    + `🕐 ${now}`;
+  const waNumber = "5355124373";
+  const waURL = `https://wa.me/${waNumber}?text=${encodeURIComponent(waMSG)}`;
+
+  // Store for confirm modal
+  window._lastWaURL = waURL;
 
   // Show confirmation
   document.getElementById('confirm-phone').textContent = phone;

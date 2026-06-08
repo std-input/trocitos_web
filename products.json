@@ -12,17 +12,17 @@
     },
     "sal-dl": {
       "name": "Salsera Dulce de Leche",
-      "price": 100,
+      "price": 120,
       "emoji": "🍮"
     },
     "sal-lc": {
       "name": "Salsera Leche Condensada",
-      "price": 90,
+      "price": 100,
       "emoji": "🥛"
     },
     "sal-nt": {
       "name": "Salsera Nutella",
-      "price": 150,
+      "price": 170,
       "emoji": "🌰"
     },
     "caja": {

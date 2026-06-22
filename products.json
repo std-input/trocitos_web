@@ -2,27 +2,27 @@
   "catalog": {
     "sin12": {
       "name": "Charola 12 Sin Cobertura",
-      "price": 870,
+      "price": 930,
       "emoji": "🍩"
     },
     "sin15": {
       "name": "Charola 15 Sin Cobertura",
-      "price": 1000,
+      "price": 1100,
       "emoji": "🍩"
     },
     "sal-dl": {
       "name": "Salsera Dulce de Leche",
-      "price": 120,
+      "price": 170,
       "emoji": "🍮"
     },
     "sal-lc": {
       "name": "Salsera Leche Condensada",
-      "price": 100,
+      "price": 130,
       "emoji": "🥛"
     },
     "sal-nt": {
       "name": "Salsera Nutella",
-      "price": 170,
+      "price": 200,
       "emoji": "🌰"
     },
     "caja": {
@@ -34,23 +34,23 @@
   "coberturas": {
     "lc": {
       "name": "Leche Condensada",
-      "price": 5
+      "price": 15
     },
     "dl": {
       "name": "Dulce de Leche",
-      "price": 7
+      "price": 20
     },
     "ch": {
       "name": "Chocolate",
-      "price": 10
+      "price": 30
     },
     "cb": {
       "name": "Choco Blanco",
-      "price": 18
+      "price": 70
     },
     "nt": {
       "name": "Nutella",
-      "price": 25
+      "price": 65
     }
   }
 }
